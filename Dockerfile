@@ -58,6 +58,8 @@ RUN apt-get -y install cron
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log
 
+# Setup cron job
+RUN (crontab -l ; echo "* * * * * cd /var/html/www && php artisan schedule:run >> /dev/null 2>&1") | crontab
 
 EXPOSE 80
 EXPOSE 443
