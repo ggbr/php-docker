@@ -59,7 +59,7 @@ RUN apt-get -y install cron
 RUN touch /var/log/cron.log
 
 # Setup cron job
-RUN (crontab -l ; echo "* * * * * cd /var/html/www && php artisan schedule:run >> /dev/null 2>&1") | crontab
+RUN (crontab -l ; echo "* * * * * /usr/local/bin/php /var/www/html/artisan schedule:run >> /dev/null 2>&1") | crontab
 
 EXPOSE 80
 EXPOSE 443
